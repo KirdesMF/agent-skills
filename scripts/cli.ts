@@ -6,116 +6,6 @@ import { fileURLToPath } from 'node:url'
 import * as p from '@clack/prompts'
 import { manual, submodules, vendors } from '../meta.ts'
 
-interface VendorConfig {
-  official?: boolean
-  source: string
-  skills: Record<string, string>
-}
-
-function extractFrontmatter(content: string): { name: string, description: string } | null {
-  const match = content.match(/^---\n([\s\S]*?)\n---/)
-  if (!match) return null
-
-  const fm = match[1]
-  const nameMatch = fm.match(/name:\s*(.+)/)
-  const descMatch = fm.match(/description:\s*(.+)/)
-
-  if (!nameMatch || !descMatch) return null
-
-  return {
-    name: nameMatch[1].trim(),
-    description: descMatch[1].trim(),
-  }
-}
-
-function getSkillDescription(skillName: string): string | null {
-  const skillPath = join(root, 'skills', skillName, 'SKILL.md')
-  if (!existsSync(skillPath)) return null
-
-  const content = readFileSync(skillPath, 'utf-8')
-  const fm = extractFrontmatter(content)
-  return fm?.description || null
-}
-
-function updateReadme() {
-  const spinner = p.spinner()
-  spinner.start('Updating README...')
-
-  const readmePath = join(root, 'README.md')
-  let content = readFileSync(readmePath, 'utf-8')
-
-  // Manual skills
-  const manualRows = manual.map((name) => {
-    const desc = getSkillDescription(name) || 'Hand-written skills with personal preferences'
-    return `| [${name}](skills/${name}) | ${desc} |`
-  }).join('\n')
-
-  // Generated skills (from submodules)
-  const generatedRows = Object.entries(submodules).map(([name, url]) => {
-    const desc = getSkillDescription(name) || 'Generated from official documentation'
-    return `| [${name}](skills/${name}) | ${desc} | [${name}](${url}) |`
-  }).join('\n')
-
-  // Vendored skills
-  const vendorRows = Object.entries(vendors).flatMap(([vendorName, config]) => {
-    const vendorConfig = config as VendorConfig
-    return Object.entries(vendorConfig.skills).map(([, outputName]) => {
-      const desc = getSkillDescription(outputName) || 'Synced from vendor'
-      const official = vendorConfig.official ? ' (Official)' : ''
-      return `| [${outputName}](skills/${outputName})${official} | ${desc} | [${vendorName}](${vendorConfig.source}) |`
-    })
-  }).join('\n')
-
-  // Replace manual section (from ### to next ###)
-  content = content.replace(
-    /### Hand-maintained Skills\n\n>.*?\n\nManually maintained.*?\n\n\| Skill \| Description \|\n\|.*?\n\n/,
-    `### Hand-maintained Skills
-
-> Opinionated
-
-Manually maintained by KirdesMF with his preferred tools, setup conventions, and best practices.
-
-| Skill | Description |
-|-------|-------------|
-${manualRows}
-
-`
-  )
-
-  // Replace generated section
-  content = content.replace(
-    /### Skills Generated from Official Documentation\n\n>.*?\n\nGenerated from official.*?\n\n\| Skill \| Description \| Source \|\n\|.*?\n\n/,
-    `### Skills Generated from Official Documentation
-
-> Unopinionated but with tilted focus (e.g. TypeScript, ESM, and other modern stacks)
-
-Generated from official documentation and fine-tuned.
-
-| Skill | Description | Source |
-|-------|-------------|--------|
-${generatedRows}
-
-`
-  )
-
-  // Replace vendor section
-  content = content.replace(
-    /### Vendored Skills\n\n>.*?\n\nSynced from external.*?\n\n\| Skill \| Description \| Source \|\n\|.*?\n\n/,
-    `### Vendored Skills
-
-Synced from external repositories that maintain their own skills.
-
-| Skill | Description | Source |
-|-------|-------------|--------|
-${vendorRows}
-
-`
-  )
-
-  writeFileSync(readmePath, content)
-  spinner.stop('README updated')
-}
-
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
@@ -379,8 +269,6 @@ async function syncSubmodules() {
   }
 
   p.log.success('All skills synced')
-
-  updateReadme()
 }
 
 async function checkUpdates() {
