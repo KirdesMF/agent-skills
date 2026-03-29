@@ -93,6 +93,7 @@ Organize code by feature directories:
 
 ### Responsive Design
 
+- use the ResizePlugin ( resizeTo init app option )
 - Scale game to fit different screen sizes
 - Handle orientation changes gracefully
 - Optimize UI for touch interaction
