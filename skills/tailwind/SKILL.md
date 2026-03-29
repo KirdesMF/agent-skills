@@ -114,6 +114,72 @@ theme: {
 <div class="animate-fade-in"></div>
 ```
 
+## Logical Properties (v4)
+
+Préférer les logical properties aux physical properties pour le support RTL/LTR.
+
+### Spacing
+
+| Physical | Logical | Description                        |
+| -------- | ------- | ---------------------------------- |
+| `pt-4`   | `pbs-4` | padding block start (top en LTR)   |
+| `pb-4`   | `pbe-4` | padding block end (bottom en LTR)  |
+| `pl-4`   | `pis-4` | padding inline start (left en LTR) |
+| `pr-4`   | `pie-4` | padding inline end (right en LTR)  |
+| `mt-4`   | `mbs-4` | margin block start                 |
+| `mb-4`   | `mbe-4` | margin block end                   |
+| `ml-4`   | `mis-4` | margin inline start                |
+| `mr-4`   | `mie-4` | margin inline end                  |
+
+### Sizing
+
+| Physical  | Logical                  |
+| --------- | ------------------------ |
+| `w-*`     | `size-*` (shorthand w+h) |
+| `min-w-*` | `min-size-*`             |
+| `max-w-*` | `max-size-*`             |
+
+### Borders
+
+| Physical       | Logical        |
+| -------------- | -------------- |
+| `border-t`     | `border-bs`    |
+| `border-b`     | `border-be`    |
+| `border-l`     | `border-is`    |
+| `border-r`     | `border-ie`    |
+| `rounded-tl-*` | `rounded-ss-*` |
+| `rounded-tr-*` | `rounded-se-*` |
+| `rounded-bl-*` | `rounded-es-*` |
+| `rounded-br-*` | `rounded-ee-*` |
+
+### Positioning
+
+| Physical    | Logical                |
+| ----------- | ---------------------- |
+| `top-*`     | `inset-block-start-*`  |
+| `bottom-*`  | `inset-block-end-*`    |
+| `left-*`    | `inset-inline-start-*` |
+| `right-*`   | `inset-inline-end-*`   |
+| `inset-x-*` | `inset-inline-*`       |
+| `inset-y-*` | `inset-block-*`        |
+
+### Text Alignment
+
+| Physical     | Logical      |
+| ------------ | ------------ |
+| `text-left`  | `text-start` |
+| `text-right` | `text-end`   |
+
+### Exemple concret
+
+❌ Physical — casse en RTL
+
+<div class="pl-4 border-l-2 rounded-tl-lg text-left">
+
+✅ Logical — fonctionne en LTR et RTL
+
+<div class="pis-4 border-is-2 rounded-ss-lg text-start">
+
 ## Best Practices
 
 ### Do's
@@ -124,6 +190,7 @@ theme: {
 - Use semantic tokens - bg-primary not bg-blue-500
 - Use size-_ - New shorthand for w-_ h-\*
 - Add accessibility - ARIA attributes, focus states
+- Always use logical properties. only use top left right bottom for exception
 
 ### Don'ts
 
