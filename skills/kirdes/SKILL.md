@@ -1,5 +1,5 @@
 ---
-name: antfu
+name: kirdes
 description: KirdesMF opinionated tooling and conventions for JavaScript/TypeScript projects. Use when setting up new projects, monorepos, library publishing.
 metadata:
   author: Cédric gourville
