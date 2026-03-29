@@ -24,19 +24,20 @@ export const vendors: Record<string, VendorSkillMeta> = {
       turborepo: 'turborepo',
     },
   },
-  'web-design-guidelines': {
+  'vercel-labs': {
     source: 'https://github.com/vercel-labs/agent-skills',
     skills: {
       'web-design-guidelines': 'web-design-guidelines',
+      'react-best-practices': 'react-best-practices',
     },
   },
   'gsap': {
     source: 'https://github.com/greensock/gsap-skills',
     skills: {
-      "gsap-core": 'gsap-core',
-      "gsap-timeline": 'gsap-timeline',
-      "gsap-performance": 'gsap-performance',
-      "gsap-scrolltrigger": 'gsap-scrolltrigger',
+      'gsap-core': 'gsap-core',
+      'gsap-timeline': 'gsap-timeline',
+      'gsap-performance': 'gsap-performance',
+      'gsap-scrolltrigger': 'gsap-scrolltrigger',
     },
   },
 }
@@ -46,5 +47,6 @@ export const vendors: Record<string, VendorSkillMeta> = {
  */
 export const manual = [
   'kirdes',
-  'pixi-js'
+  'pixi-js',
+  'typescript',
 ]
