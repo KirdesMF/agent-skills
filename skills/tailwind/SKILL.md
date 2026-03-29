@@ -17,13 +17,13 @@ metadata:
 
 ## Quick Reference
 
-| v3 | v4 |
-|----|----|
-| `tailwind.config.js/ts` | `@theme` in CSS |
-| `@tailwind base/components/utilities` | `@import "tailwindcss"` |
-| `darkMode: 'class'` | `@custom-variant dark (&:where(.dark, .dark *))` |
-| `theme.extend.colors` | `@theme { --color-*: value }` |
-| Requires plugins for animations | Native `@keyframes` in `@theme` |
+| v3                                    | v4                                               |
+| ------------------------------------- | ------------------------------------------------ |
+| `tailwind.config.js/ts`               | `@theme` in CSS                                  |
+| `@tailwind base/components/utilities` | `@import "tailwindcss"`                          |
+| `darkMode: 'class'`                   | `@custom-variant dark (&:where(.dark, .dark *))` |
+| `theme.extend.colors`                 | `@theme { --color-*: value }`                    |
+| Requires plugins for animations       | Native `@keyframes` in `@theme`                  |
 
 ## Setup
 
@@ -53,19 +53,28 @@ metadata:
 ```css
 /* v3 */
 @tailwind base;
-theme: { extend: { colors: { brand: '#6366f1' } } }
+theme: {
+  extend: {
+    colors: {
+      brand: "#6366f1";
+    }
+  }
+}
 
 /* v4 */
 @import "tailwindcss";
-@theme { --color-brand: #6366f1; }
+
+@theme {
+  --color-brand: #6366f1;
+}
 ```
 
 ```html
 <!-- v3 -->
-<div class="bg-opacity-50">
+<div class="bg-opacity-50"></div>
 
 <!-- v4 -->
-<div class="bg-red-500/50">
+<div class="bg-red-500/50"></div>
 ```
 
 ## Key v4 Features
@@ -84,24 +93,46 @@ theme: { extend: { colors: { brand: '#6366f1' } } }
 }
 ```
 
-Use OKLCH for better color perception, or arbitrary `bg-[#hex]`.
-
 ## Animations
 
 ```css
 @theme {
   --animate-fade-in: fade-in 0.3s ease-out;
-  
+
   @keyframes fade-in {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
 ```
 
 ```html
-<div class="animate-fade-in">
+<div class="animate-fade-in"></div>
 ```
+
+## Best Practices
+
+### Do's
+
+- Use @theme blocks - CSS-first configuration is v4's core pattern
+- Use OKLCH colors - Better perceptual uniformity than HSL
+- Compose with CVA - Type-safe variants
+- Use semantic tokens - bg-primary not bg-blue-500
+- Use size-_ - New shorthand for w-_ h-\*
+- Add accessibility - ARIA attributes, focus states
+
+### Don'ts
+
+- Don't use tailwind.config.ts - Use CSS @theme instead
+- Don't use @tailwind directives - Use @import "tailwindcss"
+- Don't use forwardRef - React 19 passes ref as prop
+- Don't use arbitrary values - Extend @theme instead
+- Don't hardcode colors - Use semantic tokens
+- Don't forget dark mode - Test both themes
 
 ## Upgrade Tool
 

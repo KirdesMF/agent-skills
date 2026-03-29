@@ -13,3 +13,6 @@
 [submodule "sources/tailwind"]
 	path = sources/tailwind
 	url = https://github.com/tailwindlabs/tailwindcss.com
+[submodule "vendor/gsap"]
+	path = vendor/gsap
+	url = https://github.com/greensock/gsap-skills

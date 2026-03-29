@@ -30,6 +30,15 @@ export const vendors: Record<string, VendorSkillMeta> = {
       'web-design-guidelines': 'web-design-guidelines',
     },
   },
+  'gsap': {
+    source: 'https://github.com/greensock/gsap-skills',
+    skills: {
+      "gsap-core": 'gsap-core',
+      "gsap-timeline": 'gsap-timeline',
+      "gsap-performance": 'gsap-performance',
+      "gsap-scrolltrigger": 'gsap-scrolltrigger',
+    },
+  },
 }
 
 /**
