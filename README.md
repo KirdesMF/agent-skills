@@ -1,5 +1,7 @@
 # KirdesMF's Skills
 
+> Forked from [antfu/skills](https://github.com/antfu/skills)
+
 A curated collection of [Agent Skills](https://agentskills.io/home) reflecting [KirdesMF](https://github.com/KirdesMF)'s preferences, experience, and best practices, along with usage documentation for the tools.
 
 > [!IMPORTANT]
