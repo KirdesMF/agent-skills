@@ -1,30 +1,118 @@
 ---
 name: tailwind
-description: Tailwind CSS v4 - CSS-first, @theme, breaking changes v3→v4
+description: Tailwind CSS v4 - key changes from v3, @theme configuration, migration
 metadata:
   author: KirdesMF
   version: "2026.3.29"
   source: Generated from tailwindlabs/tailwindcss.com
 ---
 
-> The skill is based on Tailwind CSS v4, generated at 2026-03-29.
+> The skill is based on Tailwind CSS v4.
 
-Tailwind CSS v4 is a utility-first CSS framework with a CSS-first configuration approach using the `@theme` directive.
+## When to Use This Skill
 
-## Core References
+- Migrating from Tailwind v3 to v4
+- Setting up new Tailwind v4 projects
+- Understanding v4 configuration changes
 
-| Topic | Description | Reference |
-|-------|-------------|-----------|
-| Theme Variables | @theme directive, extending/overriding defaults | [core-theme](references/core-theme.md) |
-| Upgrade from v3 | Breaking changes, upgrade tool, manual migration | [core-upgrade-v3-v4](references/core-upgrade-v3-v4.md) |
-| Configuration | CSS-based config, PostCSS, Vite, CLI setup | [core-configuration](references/core-configuration.md) |
-| Custom Styles | Adding custom utilities, arbitrary values | [core-custom-styles](references/core-custom-styles.md) |
-| Utility Classes | Layout, spacing, typography, colors overview | [core-utilities](references/core-utilities.md) |
+## Quick Reference
 
-## Key Changes in v4
+| v3 | v4 |
+|----|----|
+| `tailwind.config.js/ts` | `@theme` in CSS |
+| `@tailwind base/components/utilities` | `@import "tailwindcss"` |
+| `darkMode: 'class'` | `@custom-variant dark (&:where(.dark, .dark *))` |
+| `theme.extend.colors` | `@theme { --color-*: value }` |
+| Requires plugins for animations | Native `@keyframes` in `@theme` |
 
-- **CSS-first config**: No more `tailwind.config.js` - use `@theme` in CSS
-- **@import "tailwindcss"**: Replaces `@tailwind base/components/utilities`
-- **Modern browsers only**: Safari 16.4+, Chrome 111+, Firefox 128+
-- **Theme variables**: Define colors, fonts, spacing via CSS variables
-- **Performance**: Faster builds, better tree-shaking
+## Setup
+
+```css
+/* v4 CSS-first config */
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #6366f1;
+  --font-sans: Inter, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+## Migration Checklist
+
+1. **Install**: `npm install tailwindcss @tailwindcss/vite` (Vite) or `@tailwindcss/postcss`
+2. **Config**: Replace `tailwind.config.js` with `@theme` in CSS
+3. **Import**: Change `@tailwind` directives to `@import "tailwindcss"`
+4. **Colors**: Use OKLCH or arbitrary values `bg-[#hex]`
+5. **Dark mode**: Add `@custom-variant dark` and `dark:` class
+6. **Plugins**: Change `require()` to `@plugin`
+
+## Common Changes
+
+```css
+/* v3 */
+@tailwind base;
+theme: { extend: { colors: { brand: '#6366f1' } } }
+
+/* v4 */
+@import "tailwindcss";
+@theme { --color-brand: #6366f1; }
+```
+
+```html
+<!-- v3 -->
+<div class="bg-opacity-50">
+
+<!-- v4 -->
+<div class="bg-red-500/50">
+```
+
+## Key v4 Features
+
+- **CSS-first**: All config in CSS via `@theme`
+- **Theme variables**: `--color-*`, `--font-*`, `--spacing-*` generate utilities
+- **Arbitrary values**: `w-[calc(100%-2rem)]`
+- **Custom utilities**: `@utility pattern-* { ... }`
+- **Modern browsers**: Requires Safari 16.4+, Chrome 111+
+
+## Colors in v4
+
+```css
+@theme {
+  --color-mint-500: oklch(0.72 0.11 178);
+}
+```
+
+Use OKLCH for better color perception, or arbitrary `bg-[#hex]`.
+
+## Animations
+
+```css
+@theme {
+  --animate-fade-in: fade-in 0.3s ease-out;
+  
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
+```
+
+```html
+<div class="animate-fade-in">
+```
+
+## Upgrade Tool
+
+```bash
+npx @tailwindcss/upgrade
+```
+
+Auto-migrates most changes. Run in a new branch first.
+
+<!--
+Source references:
+- https://tailwindcss.com/docs/upgrade-guide
+- https://tailwindcss.com/docs/theme
+-->
