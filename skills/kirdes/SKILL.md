@@ -129,13 +129,16 @@ return doWork(input);
 - **Split large files**: Break files when they become large or handle too many concerns.
 - **Type separation**: Always separate types and interfaces into `types.ts` or `types/*.ts`.
 - **Constants extraction**: Move constants to a dedicated `constants.ts` file.
+- **Barel File**: NEVER use barel files
+-
 
 ---
 
 ## Runtime Environment
 
 - **Prefer isomorphic code**: Write runtime-agnostic code that works in Node, browser, and workers whenever possible.
-- **Clear runtime indicators**: When code is environment-specific, add a comment at the top of the file:
+- **Clear runtime indicators**: When code is environment-specific, add a comment at the top of the file
+- **Javascript runtime**: ALWAYS use bun, no pnpm, no npmn
 
 ```ts
 // @env node
