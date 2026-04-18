@@ -3,16 +3,18 @@
   "private": true,
   "packageManager": "bun@1.3.11",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "oxlint . --disable-nested-config --ignore-pattern '**/vendor/**' --ignore-pattern '**/sources/**' --ignore-pattern '**/skills/**'",
+    "format": "oxfmt . '!**/vendor/**' '!**/sources/**' '!**/skills/**'",
+    "format:check": "oxfmt --check . '!**/vendor/**' '!**/sources/**' '!**/skills/**'",
     "start": "node scripts/cli.ts",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.7.2",
     "@clack/prompts": "^1.1.0",
     "@types/node": "^25.5.0",
-    "eslint": "^10.0.3",
     "lint-staged": "^16.3.3",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
     "simple-git-hooks": "^2.13.1",
     "typescript": "^5.9.3"
   },
@@ -20,6 +22,9 @@
     "pre-commit": "bun lint-staged"
   },
   "lint-staged": {
-    "*.{js,ts,mjs,mts}": "eslint --fix"
+    "*.{js,ts,mjs,mts}": [
+      "oxfmt --write",
+      "oxlint --fix"
+    ]
   }
 }
