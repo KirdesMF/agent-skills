@@ -1,5 +1,5 @@
 # Sync Info
 
 - **Source:** `vendor/gsap/skills/gsap-scrolltrigger`
-- **Git SHA:** `03d9f0c3dbf91e0b60582b64ed040c8911ca0174`
-- **Synced:** 2026-03-29
+- **Git SHA:** `aed9cfd3277740755f6bfc1155c7aa645403b760`
+- **Synced:** 2026-04-25

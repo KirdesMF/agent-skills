@@ -16,3 +16,9 @@
 [submodule "vendor/vercel-labs"]
 	path = vendor/vercel-labs
 	url = https://github.com/vercel-labs/agent-skills
+[submodule "vendor/shadcn"]
+	path = vendor/shadcn
+	url = https://github.com/shadcn-ui/ui
+[submodule "vendor/pixijs"]
+	path = vendor/pixijs
+	url = https://github.com/pixijs/pixijs-skills

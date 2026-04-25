@@ -32,8 +32,8 @@ This collection is aim to be a one-stop collection of you are mainly working on 
 
 Manually maintained by KirdesMF with his preferred tools, setup conventions, and best practices.
 
-| Skill | Description |
-|-------|-------------|
+| Skill                       | Description                                                        |
+| --------------------------- | ------------------------------------------------------------------ |
 | [KirdesMF](skills/KirdesMF) | KirdesMF's preferences and best practices for app/library projects |
 
 ### Skills Generated from Official Documentation
@@ -42,19 +42,19 @@ Manually maintained by KirdesMF with his preferred tools, setup conventions, and
 
 Generated from official documentation and fine-tuned.
 
-| Skill | Description | Source |
-|-------|-------------|--------|
+| Skill                       | Description                                           | Source                                                                          |
+| --------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [tailwind](skills/tailwind) | Tailwind CSS v4 - CSS-first, @theme, breaking changes | [tailwindlabs/tailwindcss.com](https://github.com/tailwindlabs/tailwindcss.com) |
-| [vite](skills/vite) | Vite build tool - config, plugins, SSR, library mode | [vitejs/vite](https://github.com/vitejs/vite) |
-| [vitest](skills/vitest) | Vitest - unit testing framework powered by Vite | [vitest-dev/vitest](https://github.com/vitest-dev/vitest) |
+| [vite](skills/vite)         | Vite build tool - config, plugins, SSR, library mode  | [vitejs/vite](https://github.com/vitejs/vite)                                   |
+| [vitest](skills/vitest)     | Vitest - unit testing framework powered by Vite       | [vitest-dev/vitest](https://github.com/vitest-dev/vitest)                       |
 
 ### Vendored Skills
 
 Synced from external repositories that maintain their own skills.
 
-| Skill | Description | Source |
-|-------|-------------|--------|
-| [turborepo](skills/turborepo) (Official) | Turborepo - high-performance build system for monorepos | [vercel/turborepo](https://github.com/vercel/turborepo) |
+| Skill                                                 | Description                                             | Source                                                                  |
+| ----------------------------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [turborepo](skills/turborepo) (Official)              | Turborepo - high-performance build system for monorepos | [vercel/turborepo](https://github.com/vercel/turborepo)                 |
 | [web-design-guidelines](skills/web-design-guidelines) | Web design guidelines for building beautiful interfaces | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) |
 
 ## FAQ
