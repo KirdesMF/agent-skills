@@ -1,4 +1,4 @@
-# Tailwind v4 shadcn/ui reference
+# Tailwind v4 reference
 
 This reference expands the rules in `SKILL.md` with examples. Load it when auditing a component, designing a theme, or explaining why a class pattern should change.
 
@@ -496,14 +496,14 @@ Do not mechanically replace physical utilities when physical placement is intent
 
 ## 10. Overlay z-index
 
-Do not add manual `z-*` values to shadcn overlay components by default. Dialog, Sheet, Popover, DropdownMenu, Tooltip, HoverCard, and related primitives already manage stacking. Only change z-index when investigating a specific stacking context defect.
+Do not add manual `z-*` values to overlay components by default. Dialog, Sheet, Popover, DropdownMenu, Tooltip, HoverCard, and related primitives often manage stacking. Only change z-index when investigating a specific stacking context defect.
 
 ## 11. Audit template
 
 Use this compact structure when reviewing code:
 
 ```markdown
-## Tailwind v4 shadcn/ui audit
+## Tailwind v4 audit
 
 ### Required fixes
 - [rule]: [problem] -> [replacement]
